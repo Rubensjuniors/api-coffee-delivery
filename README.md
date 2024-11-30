@@ -1,9 +1,37 @@
-# Financial
+# Geral
 ## RF
 - Deve ser possivel se casdastrar
-  - Logar
   - Atualizar Dados
   - Deletar usuario
+- Deve ser possivel um usuario Alterar a senha
+## RN
+  - Usuarios deve ser unicos
+    - Nome e email
+  - Deve ser possivel caso usuario esqueça a senha solicitar a alteração
+## RNF
+-  A senha do usuário precisa estar criptografada;
+-  Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
+-  O usuário deve ser identificado por um JWT (JSON Web Token);
+
+#Dashboard
+
+## RF
+- Deve ser possivel Criar/Atualizar/Deletar uma rotina
+- Deve ser possivel Listar a rotina
+- Deve ser possivel criar/atualizar/deletar uma task
+- Deve ser possivel listar todas as tasks
+- Deve ser possivel Filtrara a tela por dia e por mes
+- Deve ser possivel acada final do dia verificar se a rotina foi concluida e somar os dias consecutivos
+- Deve ser possivel obter um resumo dos dias consecutivos
+
+## RN
+- Usuario pode ver apenas os seu dados quando logado
+- Deve ser possivel ter uma vizualição dos dias anteriores
+- Deve ser possivel ver um resumo do mes e marcar cada dia completo que o usuario completo
+
+
+# Financial
+## RF
 - Deve ser possivel adicionar entradas de dinheiro
   - Atualizar
   - Deletar
@@ -34,10 +62,9 @@
 
 ## RN
 - Usuario deve poder ter acesso so os seus gastos cadastrados
-- A visualização do gastos deve mudar todo dia primeiro do mês
+- A visualização do gastos deve mudar todo dia primeiro do mês para o proximo mês
 - Usuario pode ver os seus gastos dos meses anteriores
 - O valor da entrada deve diminuir de acordo com os items marcados como pago
 - O valor total dos gasto deve diminuir ate ficar positivo
   - Vermelho para negativo
   - Verde Para Positivo
-## RNF
