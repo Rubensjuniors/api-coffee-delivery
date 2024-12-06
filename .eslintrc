@@ -1,5 +1,46 @@
 {
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "simple-import-sort",
+    "unused-imports"
+  ],
   "extends": [
-    "@rocketseat/eslint-config/node"
-  ]
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "quotes": ["error", "single"],
+    "@typescript-eslint/no-floating-promises": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "max-len": ["error", { "code": 110, "ignoreUrls": true }],
+    "complexity": ["warn", { "max": 10 }],
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "unused-imports/no-unused-imports": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "no-console": "off",
+    "semi": ["error", "never"],
+    "no-shadow": "error",
+    "@typescript-eslint/require-await": "off",
+    "curly": ["error", "multi-line"],
+    "eqeqeq": ["error", "always"],
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-argument": "off"
+  }
 }

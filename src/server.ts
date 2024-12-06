@@ -9,13 +9,3 @@ app
   .then(() => {
     console.log('HTTP Server Running!!!🧸')
   })
-
-// app.ready().then(() => {
-//   const spec = app.swagger()
-
-//   writeFile(
-//     resolve('.', 'swagger.json'),
-//     JSON.stringify(spec, null, 2),
-//     'utf-8',
-//   )
-// })
