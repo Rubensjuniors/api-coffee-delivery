@@ -1,8 +1,10 @@
 import { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 
-import { getUserProfile } from '@/controllers/getUserProfile'
+import { authenticate } from '@/controllers/authenticare'
+import { profile } from '@/controllers/profile'
 import { register } from '@/controllers/register'
+import { verifyJWT } from '@/middlewares/verify-jwt'
 
 export const user: FastifyPluginAsyncZod = async (app) => {
   app.post(
@@ -16,6 +18,7 @@ export const user: FastifyPluginAsyncZod = async (app) => {
           name: z.string(),
           email: z.string().email(),
           password: z.string().min(6),
+          photourl: z.string().optional(),
         }),
         response: {
           201: z.object({}),
@@ -25,22 +28,40 @@ export const user: FastifyPluginAsyncZod = async (app) => {
     },
     register,
   )
-  app.get(
-    '/users/:id',
+  app.post(
+    '/sessions',
     {
       schema: {
         tags: ['Users'],
-        operationId: 'getUser',
-        description: 'Get User.',
-        params: z.object({
-          id: z.string().uuid(),
+        operationId: 'sessionsUser',
+        description: 'Authenticate user.',
+        body: z.object({
+          email: z.string().email(),
+          password: z.string().min(6),
         }),
+        response: {
+          200: z.string(),
+          400: z.object({ message: z.string() }),
+        },
+      },
+    },
+    authenticate,
+  )
+
+  /** Authenticated */
+  app.get(
+    '/me',
+    {
+      onRequest: [verifyJWT],
+      schema: {
+        tags: ['Users'],
+        operationId: 'getUser',
+        description: 'Get User when authenticated.',
         response: {
           200: z.object({
             id: z.string(),
             name: z.string(),
             email: z.string().email(),
-            password_hash: z.string(),
             photo_url: z.string(),
             created_at: z.date(),
           }),
@@ -50,6 +71,6 @@ export const user: FastifyPluginAsyncZod = async (app) => {
         },
       },
     },
-    getUserProfile,
+    profile,
   )
 }
