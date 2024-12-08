@@ -23,8 +23,17 @@ app.register(fastifySwagger, {
       title: env.TITLE,
       version: '1.0.0',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT', // Formato do token (opcional)
+        },
+      },
+    },
   },
-  transform: jsonSchemaTransform,
+  transform: jsonSchemaTransform, // Supondo que seja para transformar os schemas
 })
 
 app.register(fastifySwaggerUi, {

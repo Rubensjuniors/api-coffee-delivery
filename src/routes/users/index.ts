@@ -57,6 +57,11 @@ export const user: FastifyPluginAsyncZod = async (app) => {
         tags: ['Users'],
         operationId: 'getUser',
         description: 'Get User when authenticated.',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
         response: {
           200: z.object({
             id: z.string(),
