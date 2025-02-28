@@ -10,6 +10,7 @@ interface RegisterUseCaseRequest {
   email: string
   password: string
   photoUrl?: string
+  roles?: ('USER' | 'ADMIN')[]
 }
 
 interface RegisterUseCaseResponse {
@@ -24,6 +25,7 @@ export class RegisterUseCase {
     email,
     password,
     photoUrl,
+    roles,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
@@ -38,6 +40,7 @@ export class RegisterUseCase {
       email,
       password_hash,
       photo_url: photoUrl ? photoUrl : '',
+      roles,
     })
 
     return {

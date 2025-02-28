@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-import { Prisma, User } from '@prisma/client'
+import { Prisma, Role, User } from '@prisma/client'
 
 import { UsersRepository } from '@/repositories/types/users-repository'
 
@@ -35,6 +35,7 @@ export class InMemoryUsersRepositoryMock implements UsersRepository {
       password_hash: data.password_hash,
       created_at: new Date(),
       photo_url: '',
+      roles: [Role.USER],
     }
 
     this.items.push(user)

@@ -15,7 +15,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
   try {
     const authenticateUseCase = makeAuthenticateuseCase()
     const {
-      user: { email: userEmail, id, name, photo_url },
+      user: { email: userEmail, id, name, photo_url, roles },
     } = await authenticateUseCase.execute({
       email,
       password,
@@ -26,6 +26,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
         name,
         email: userEmail,
         photoUrl: photo_url ? photo_url : '',
+        roles,
       },
       {
         sign: {

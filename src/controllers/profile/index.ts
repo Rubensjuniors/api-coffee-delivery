@@ -5,7 +5,7 @@ import { makeGetUserProfileUseCase } from '@/use-cases/factoties/make-get-user-p
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
   const getUserProfile = makeGetUserProfileUseCase()
   const {
-    user: { email, created_at, id, name, photo_url },
+    user: { email, created_at, id, name, photo_url, roles },
   } = await getUserProfile.execute({
     userId: request.user.sub,
   })
@@ -16,5 +16,6 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
     email,
     created_at,
     photo_url,
+    roles,
   })
 }

@@ -6,6 +6,7 @@ declare module '@fastify/jwt' {
       name: string
       email: string
       photoUrl: string
+      roles?: ('USER' | 'ADMIN')[]
     } // payload type is used for signing and verifying
     user: {
       sub: string

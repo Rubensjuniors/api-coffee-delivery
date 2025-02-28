@@ -8,7 +8,7 @@ import { verifyJWT } from '@/middlewares/verify-jwt'
 
 export const user: FastifyPluginAsyncZod = async (app) => {
   app.post(
-    '/users',
+    '/user/register',
     {
       schema: {
         tags: ['Users'],
@@ -19,6 +19,7 @@ export const user: FastifyPluginAsyncZod = async (app) => {
           email: z.string().email(),
           password: z.string().min(6),
           photourl: z.string().optional(),
+          roles: z.enum(['USER', 'ADMIN']).array().default(['USER']).optional(),
         }),
         response: {
           201: z.object({}),
@@ -29,7 +30,7 @@ export const user: FastifyPluginAsyncZod = async (app) => {
     register,
   )
   app.post(
-    '/sessions',
+    '/user/sessions',
     {
       schema: {
         tags: ['Users'],
@@ -50,7 +51,7 @@ export const user: FastifyPluginAsyncZod = async (app) => {
 
   /** Authenticated */
   app.get(
-    '/me',
+    '/user/me',
     {
       onRequest: [verifyJWT],
       schema: {
@@ -69,6 +70,7 @@ export const user: FastifyPluginAsyncZod = async (app) => {
             email: z.string().email(),
             photo_url: z.string(),
             created_at: z.date(),
+            roles: z.enum(['USER', 'ADMIN']).array().default(['USER']).optional(),
           }),
           404: z.object({
             message: z.string(),
