@@ -2,7 +2,7 @@ import { InMemoryUsersRepositoryMock } from '@memory/in-memory-users-repository-
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { ResourceNotFoundError } from '../errors/ResourceNotFoundError'
+import { ResourceNotFoundError } from '../../errors/ResourceNotFoundError'
 import { GetUserProfileUseCase } from '.'
 
 let usersRepository: InMemoryUsersRepositoryMock

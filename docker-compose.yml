@@ -6,6 +6,6 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRESQL_USERNAME=lrhub
-      - POSTGRESQL_PASSWORD=lrhub
-      - POSTGRESQL_DATABASE=apilrhub
+      - POSTGRESQL_USERNAME=apicoffee
+      - POSTGRESQL_PASSWORD=apicoffee
+      - POSTGRESQL_DATABASE=apicoffee

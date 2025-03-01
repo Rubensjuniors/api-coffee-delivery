@@ -1,16 +1,7 @@
-import { User } from '@prisma/client'
-
 import { UsersRepository } from '@/repositories/types/users-repository'
 
-import { ResourceNotFoundError } from '../errors/ResourceNotFoundError'
-
-interface GetUserProfileUseCaseRequest {
-  userId: string
-}
-
-interface GetUserProfileUseCaseResponse {
-  user: User
-}
+import { ResourceNotFoundError } from '../../errors/ResourceNotFoundError'
+import { GetUserProfileUseCaseRequest, GetUserProfileUseCaseResponse } from './types'
 
 export class GetUserProfileUseCase {
   constructor(private usersRepository: UsersRepository) {}

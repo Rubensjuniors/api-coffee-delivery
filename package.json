@@ -1,7 +1,7 @@
 {
-  "name": "api-lr-hub",
+  "name": "api-coffee-delivery",
   "version": "1.0.0",
-  "description": "api lr hub",
+  "description": "api-coffee-delivery",
   "main": "index.js",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
